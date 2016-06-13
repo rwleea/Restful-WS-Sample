@@ -14,14 +14,16 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
+//embedded tomcat run : clean install tomcat7:run
 
-//localhost:8080/book
+
+//localhost:9090/rest/book
 @Path("/book/1.0")
 public class RestfulTest {
 public List<String> bookList =  new ArrayList<String>(Arrays.asList("HelloJava","HelloBootStrap","HelloGit"));
 
 
-//http://localhost:8080/book/1.0
+//http://localhost:9090/rest/book/1.0
 @POST
 @Consumes("text/plain")
 public void addBook(String bookname){
@@ -29,7 +31,7 @@ public void addBook(String bookname){
 	System.out.println(this.bookList);
 }
 
-//http://localhost:8080/book/1.0
+//http://localhost:9090/rest/book/1.0
 @GET
 @Produces("text/plain")
 public String getAllbooks(){
@@ -37,7 +39,7 @@ public String getAllbooks(){
 	return this.bookList.toString();
 }
 
-//http://localhost:8080/book/1.0/HelloJava
+//http://localhost:9090/reset/book/1.0/HelloJava
 @GET
 @Path("/{book}")
 public String getBookByName(@PathParam("book") String bookname){
@@ -51,7 +53,7 @@ public String getBookByName(@PathParam("book") String bookname){
 	System.out.println(result);
 	return result;
 }
-//http://localhost:8080/book/1.0/HelloOpenstack?targetBook=HelloJava
+//http://localhost:9090/rest/book/1.0/HelloOpenstack?targetBook=HelloJava
 @PUT
 @Path("/{book}")
 public void updateBook(@PathParam("book") String book,
@@ -63,7 +65,7 @@ public void updateBook(@PathParam("book") String book,
 	System.out.println("after: "+bookList.toString());
 }
 
-//http://localhost:8080/book/1.0/HelloJava
+//http://localhost:9090/rest/book/1.0/HelloJava
 @DELETE
 @Path("/{book}")
 public void deleBook(@PathParam("book") String book){
